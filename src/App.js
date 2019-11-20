@@ -37,17 +37,38 @@ var data = [
   }
 ];
 
-const Menu = props => (
+const Recipe = ({ name, ingredients, steps }) => (
+  <section id={name.toLowerCase().replace(/ /g, '-')}>
+    <h1>{name}</h1>
+    <ul className="ingredients">
+      {ingredients.map((ingredient, i) => (
+        <li key={i}>{ingredient.name}</li>
+      ))}
+    </ul>
+    <section className="instructions">
+      <h2>Cooking Instructions</h2>
+      {steps.map((step, i) => (
+        <p key={i}>{step}</p>
+      ))}
+    </section>
+  </section>
+);
+
+const Menu = ({ title, recipes }) => (
   <article>
     <header>
-      <h1>{props.title}</h1>
+      <h1>{title}</h1>
     </header>
-    <div className="recipes"></div>
+    <div className="recipes">
+      {recipes.map((recipe, i) => (
+        <Recipe key={i} {...recipe} />
+      ))}
+    </div>
   </article>
 );
 
 function App() {
-  return <Menu title="Delicious Recipes" recipes={data} />;
+  return <Menu recipes={data} title="Delicious Recipes" />;
 }
 
 export default App;
