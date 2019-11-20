@@ -46,6 +46,15 @@ const Instructions = ({ title, steps }) => (
   </section>
 );
 
+const IngredientsList = ({ list }) => (
+  <ul className="ingredients">
+    {list.map((ingredient, i) => (
+      // <li key={i}>{ingredient.name}</li>
+      <Ingredients key={i} {...ingredient} />
+    ))}
+  </ul>
+);
+
 const Ingredients = ({ name, amount, measurement }) => (
   <li>
     <span className="amount">{amount}</span>
@@ -57,12 +66,7 @@ const Ingredients = ({ name, amount, measurement }) => (
 const Recipe = ({ name, ingredients, steps }) => (
   <section id={name.toLowerCase().replace(/ /g, '-')}>
     <h1>{name}</h1>
-    <ul className="ingredients">
-      {ingredients.map((ingredient, i) => (
-        // <li key={i}>{ingredient.name}</li>
-        <Ingredients key={i} {...ingredient} />
-      ))}
-    </ul>
+    <IngredientsList list={ingredients} />
     <Instructions title="Cooking Instructions" steps={steps} />
   </section>
 );
