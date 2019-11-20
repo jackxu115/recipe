@@ -37,8 +37,17 @@ var data = [
   }
 ];
 
+const Menu = props => (
+  <article>
+    <header>
+      <h1>{props.title}</h1>
+    </header>
+    <div className="recipes"></div>
+  </article>
+);
+
 function App() {
-  return <h1>Hello</h1>;
+  return <Menu title="Delicious Recipes" recipes={data} />;
 }
 
 export default App;
