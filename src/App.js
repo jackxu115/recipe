@@ -37,20 +37,33 @@ var data = [
   }
 ];
 
+const Instructions = ({ title, steps }) => (
+  <section className="instructions">
+    <h2>{title}</h2>
+    {steps.map((step, i) => (
+      <p key={i}>{step}</p>
+    ))}
+  </section>
+);
+
+const Ingredients = ({ name, amount, measurement }) => (
+  <li>
+    <span className="amount">{amount}</span>
+    <span className="measurement">{measurement}</span>
+    <span className="name">{name}</span>
+  </li>
+);
+
 const Recipe = ({ name, ingredients, steps }) => (
   <section id={name.toLowerCase().replace(/ /g, '-')}>
     <h1>{name}</h1>
     <ul className="ingredients">
       {ingredients.map((ingredient, i) => (
-        <li key={i}>{ingredient.name}</li>
+        // <li key={i}>{ingredient.name}</li>
+        <Ingredients key={i} {...ingredient} />
       ))}
     </ul>
-    <section className="instructions">
-      <h2>Cooking Instructions</h2>
-      {steps.map((step, i) => (
-        <p key={i}>{step}</p>
-      ))}
-    </section>
+    <Instructions title="Cooking Instructions" steps={steps} />
   </section>
 );
 
